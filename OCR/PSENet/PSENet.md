@@ -8,7 +8,7 @@ Online Hard Example Mining (OHEM)是个啥？文章在Complete Text Loss计算�
 3. 利用广度优先搜索不断合并周围像素，扩展kernel得到完整文本行  
 
 ## 网络结构
-![sparkles](Structure_of_PSENet.png)  
+![sparkles](Structure_of_PSENet.PNG)  
 以FPN为基础网络，提取四层不同尺度的特征，自顶向下上采样和拼接合并，得到F。  
 右侧预测不同kernel scale的分割图，S1是最小kernel scale，Sn是最大(完整文本行)，通过渐进扩展算法不断扩展S1得到Sn.
 ### 渐进扩展算法（Progressive scale expansion）
