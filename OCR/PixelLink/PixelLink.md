@@ -7,7 +7,7 @@ For a given pixel and one of its eight neighbors, if they belong to the same ins
 ## 网络结构
 整体流程：  
 先通过深度学习网络预测pixel positive和link positive，并根据link positive连接pixel positive得到文本实例分割图，然后从分割图中直接提取文本行的bbox  
-![sparkles](Architecture_of_PixelLink.png)
+![sparkles](Architecture_of_PixelLink.PNG)
 
 具体步骤：  
 1. 主干网络是SSD结构，首先用VGG16作为base net, 将最后两个全连接改成卷积
@@ -16,7 +16,7 @@ For a given pixel and one of its eight neighbors, if they belong to the same ins
    PixelLink+VGG16 4s网络：提取了conv3_3,conv4_3, conv5_3, fc_7。得到特征图为原图1/4
 3. 对已提取的特征层，进行自顶向下的融合，先上采样，再add。（这里包含了两种操作：pixel cls和pixel link，对应的卷积核个数分别为2和16）
 4. 网络输出包含文本/非文本预测和link预测  
-![sparkles](Structure_of_PixelLink_VGG16_2s.png)
+![sparkles](Structure_of_PixelLink_VGG16_2s.PNG)
 
 
 
