@@ -14,7 +14,7 @@
 ![sparkles](pipelines_of_EAST.png)
 只有两个stage: 多通道全卷积和LNMS（局部感知NMS）  
 具体流程：  
-![sparkles](structure_of_EAST.png)  
+![sparkles](Structure_of_EAST.png)  
 1. 先用通用网络作为base net提取特征（论文使用的是Pvanet,也可以采用VGG16， Resnet等）
 2. 基于上述主干特征提取网络，抽取不同level的feature map（尺寸分别是输入图像的 1/32, 1/16, 1/8, 1/4），利用不同尺度的特征图，解决文本行尺度变换剧烈的问题，early stage可用于预测小的文本行，late stage可用于预测大的文本行
 3. 特征合并层，将抽取的特征进行merge，采用U-net的方法
