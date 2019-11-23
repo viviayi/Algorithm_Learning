@@ -11,10 +11,10 @@
 3. 采用了Locality-Aware NMS来对生成的几何进行过滤
 4. 该方法在精度和速度方面都有一定的提升．
 ## 网络结构
-![sparkles](pipelines_of_EAST.png)
+![sparkles](pipelines_of_EAST.PNG)
 只有两个stage: 多通道全卷积和LNMS（局部感知NMS）  
 具体流程：  
-![sparkles](structure_of_EAST.png)  
+![sparkles](Structure_of_EAST.PNG)  
 1. 先用通用网络作为base net提取特征（论文使用的是Pvanet,也可以采用VGG16， Resnet等）
 2. 基于上述主干特征提取网络，抽取不同level的feature map（尺寸分别是输入图像的 1/32, 1/16, 1/8, 1/4），利用不同尺度的特征图，解决文本行尺度变换剧烈的问题，early stage可用于预测小的文本行，late stage可用于预测大的文本行
 3. 特征合并层，将抽取的特征进行merge，采用U-net的方法
@@ -24,19 +24,19 @@
 ### ground truth  
 RBOX（Rotation box）的Geometry map表示为四个通道的同轴边界框R和一个通道的旋转角，四个通道代表像素点与矩形框四条边的距离。 
 QUAD（Quadrange, 四边形）的Geometry map表示为8个相对于角点的偏移。   
-![sparkles](label_of_EAST.png)  
+![sparkles](label_of_EAST.PNG)  
 黄色虚线是文本框，绿色是缩小后的文本框。图b是得分图，图c中，粉色框为黄色虚线框的最小外接矩，生成RBOX的geometry map即白色框中每个点到粉框四条边的距离，因此生成d中四个channel的map，旋转角度e即粉框的水平倾斜角，所有像素点相同，1个channel。  
 对于QUAD，则是计算白框每个像素点到黄色四边形框的四个角点的偏移，每个点有x和y两个坐标，因此是8个通道。  
 
 ### Loss
 #### Score Loss
-![sparkles](score_loss_of_EAST.png)  
+![sparkles](score_loss_of_EAST.PNG)  
 #### Geometry loss
 ##### RBOX:
-![sparkles](RBOX_loss_of_EAST.png)  
+![sparkles](RBOX_loss_of_EAST.PNG)  
 ##### QUAD:
-![sparkles](QUAD_loss_of_EAST.png) 
-![sparkles](QUAD_loss2_of_EAST.png)  
+![sparkles](QUAD_loss_of_EAST.PNG) 
+![sparkles](QUAD_loss2_of_EAST.PNG)  
 
 ## 相关概念
 ### 标准NMS：  
