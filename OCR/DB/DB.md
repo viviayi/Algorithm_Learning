@@ -29,7 +29,10 @@ $$L_s=L_b=\sum_{i\in S_l}y_i\log x_i+(1-y_i)\log (1-x_i)$$
 为了平衡正负样本，对负样本进行采样，$S_l$是正负样本比例为1:3的样本集。
 其中阈值损失$L_t$是膨胀文本框$G_d$内预测值和标签值的$L1$距离和：
 $$L_t=\sum_{i \in R_d}|y_i^*-x_i^*|$$
-其中$R_d$是在膨胀文本框内的像素indexs，$y^*$是对应的阈值图标签。
+其中$R_d$是在膨胀文本框内的像素indexs，$y^\*$是对应的阈值图标签。
+实际在代码中：  
+$$loss = diceLoss + self.l1Scale * l1Loss + bceLoss * self.bceScale$$
+dice_loss是计算的二值化图的loss，l1_loss是计算的阈值图的loss，系数10, bce_loss是计算的概率图的loss，系数5
 
 ## 推理
 文中说在推理时，使用预测的概率图和近似二值图生成文本框结果几乎一样，因此可以直接使用概率图，而在推理时去除预测阈值图。  
