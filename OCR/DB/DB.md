@@ -23,15 +23,15 @@ $$D=\frac{A(1-r^2)}{L}$$
 $r$设为0.4。$L$是文本框周长，$A$是文本框面积
 
 ## 损失函数
-$$L=L_s + \alpha \times L_b+\beta \times L_t$$
-其中$L_s$是概率图$P$的损失，$L_b$是二值图$\widehat{B}$的损失，$\alpha$和$\beta$分别设为1和10。$L_s$和$L_b$使用二值交叉熵损失：
-$$L_s=L_b=\sum_{i\in S_l}y_i\log x_i+(1-y_i)\log (1-x_i)$$
-为了平衡正负样本，对负样本进行采样，$S_l$是正负样本比例为1:3的样本集。
-其中阈值损失$L_t$是膨胀文本框$G_d$内预测值和标签值的$L1$距离和：
-$$L_t=\sum_{i \in R_d}|y_i^*-x_i^*|$$
-其中$R_d$是在膨胀文本框内的像素indexs，$y^\*$是对应的阈值图标签。
+$$L=L_s + \alpha \times L_b+\beta \times L_t$$  
+其中$L_s$是概率图$P$的损失，$L_b$是近似二值图$\widehat{B}$的损失，$\alpha$和$\beta$分别设为1和10。$L_s$和$L_b$使用二值交叉熵损失：  
+$$L_s=L_b=\sum_{i\in S_l}y_i\log x_i+(1-y_i)\log (1-x_i)$$  
+为了平衡正负样本，对负样本进行采样，$S_l$是正负样本比例为1:3的样本集。  
+其中阈值损失$L_t$是膨胀文本框$G_d$内预测值和标签值的$L1$距离和：  
+$$L_t=\sum_{i \in R_d}|y_i^*-x_i^*|$$  
+其中$R_d$是在膨胀文本框内的像素indexs，$y^*$是对应的阈值图标签。  
 实际在代码中：  
-$$loss = diceLoss + self.l1Scale * l1Loss + bceLoss * self.bceScale$$
+$$loss = dice\_loss + self.l1\_scale * l1\_loss + bce\_loss * self.bce\_scale$$  
 dice_loss是计算的二值化图的loss，l1_loss是计算的阈值图的loss，系数10, bce_loss是计算的概率图的loss，系数5
 
 ## 推理
