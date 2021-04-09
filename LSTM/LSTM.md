@@ -33,9 +33,6 @@ LSTM通过“门”来给cell state清除或添加信息，“门”让信息选
 ![sparkles](LSTM3-var-peepholes.png)  
 peepholes 在三个门中都加入了上一时刻的状态输入  
 
-
-## Bi-LSTM
-双向的LSTM。单向的LSTM会输出与句子长度相同的序列{$h_0, h_1, ... , h_{n-1}$}，将正向和逆向输出的两个序列进行对应concat得到双向lstm的输出  
 $f_{t}=\sigma (W_{f}\cdot [C_{t-1},h_{t-1},x_t]+b_f)$  
 ![sparkles](LSTM3-var-tied.png)  
 计算当前状态时，使用遗忘门和非遗忘门
@@ -44,3 +41,5 @@ $C_t=f_t\ast C_{t-1}+(1-f_t)\ast \widetilde{C_t}$
 GRU  
 将输入门和遗忘门整合，cell state和hidden state整合
 
+## Bi-LSTM
+双向的LSTM。单向的LSTM会输出与句子长度相同的序列{$h_0, h_1, ... , h_{n-1}$}，将正向和逆向输出的两个序列进行对应concat得到双向lstm的输出  
